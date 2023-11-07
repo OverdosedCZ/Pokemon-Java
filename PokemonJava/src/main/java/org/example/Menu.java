@@ -2,23 +2,27 @@ package org.example;
 
 import java.util.Scanner;
 
-public class Menu {
+public class Menu extends Pokedex{
 
     public void vyvolejMenu(){
-        Scanner input = new Scanner(System.in);
-        Pokedex pokedex = new Pokedex();
 
-        System.out.println(" Zvolte prosim operaci: \n-------------------------------");
-        System.out.println("Pridat pokemona (1) \nFiltrovany vyber (2) \nVypsat pokedex (3) \n-------------------------------");
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Zvolte prosim operaci: \n-------------------------------");
+        System.out.println("Pridat pokemona (1) \nFiltrovany vyber (2) \nVypsat pokedex (3) \nPorovnani pokemonu (4) \n-------------------------------");
         switch (input.nextInt()){
             case 1:
-                pokedex.pridejPokemona();
+               pridejPokemona();
                 break;
             case 2:
-                pokedex.vypisFiltry();
+                vypisFiltry();
                 break;
             case 3:
-                pokedex.vypisPokedex();
+                vypisPokedex();
+                break;
+            case 4:
+                porovnejPokemony();
+                break;
             default:
                 napisError();
                 break;

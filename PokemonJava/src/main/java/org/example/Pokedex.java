@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Scanner;
 
-public class Pokedex extends Menu{
+public class Pokedex{
 
     Scanner input = new Scanner(System.in);
 
@@ -16,27 +16,28 @@ public class Pokedex extends Menu{
     }
 
     public void pridejPokemona() {
-        System.out.print("Kolik pokemonu chcete pridat?: ");
-        int pocet = input.nextInt();
-        for (int i = 0; i < pocet; i++) {
-            System.out.print("------------------------------- \nZadejte jmeno pokemona: ");
-            String name = input.next();
-
-            System.out.print("Zadejte element pokemna: ");
-            String element = input.next();
-
-            System.out.print("Zadejte HP pokemona: ");
-            int hp = input.nextInt();
-
-            System.out.print("Zadejte level pokemona: ");
-            int level = input.nextInt();
-
-            pokemoni[aktualniPoziceVListu] = new Pokemon(name, element, hp, level);
+            pokemoni[aktualniPoziceVListu] = vytvorPokemona();
             aktualniPoziceVListu++;
-
-            System.out.println("Novy pokemon: " + name + " byl uspesne vytvoren! (Jmeno: " + name +" element: " + element + " HP: " + hp + " level: " + level + ")");
-        }
     }
+
+    public Pokemon vytvorPokemona(){
+        System.out.print("------------------------------- \nZadejte jmeno pokemona: ");
+        String name = input.next();
+
+        System.out.print("Zadejte element pokemna: ");
+        String element = input.next();
+
+        System.out.print("Zadejte HP pokemona: ");
+        int hp = input.nextInt();
+
+        System.out.print("Zadejte level pokemona: ");
+        int level = input.nextInt();
+
+        System.out.println("Novy pokemon: '" + name + "' byl uspesne vytvoren! (Jmeno: " + name +" element: " + element + " HP: " + hp + " level: " + level + ")");
+
+        return new Pokemon(name, element, hp, level);
+    }
+
 
     public void vypisPokedex() {
         for (int i = 0; i < pokemoni.length; i++) {
@@ -61,13 +62,12 @@ public class Pokedex extends Menu{
                 filtrujLevel();
                 break;
             default:
-                napisError();
                 break;
         }
     }
 
     public void filtrujElement() {
-        System.out.print("Jaky element chcete vypsat? (El)");
+        System.out.print("Jaky element chcete vypsat? (El): ");
         String vybranyElement = input.next();
         System.out.println(vybranyElement + " pokemoni:");
         for (int i = 0; i < pokemoni.length; i++) {
@@ -79,7 +79,7 @@ public class Pokedex extends Menu{
     }
 
     public void filtrujHP() {
-        System.out.print("Jake HP chcete vypsat? (120)");
+        System.out.print("Jake HP chcete vypsat? (120): ");
         int vybraneHP = input.nextInt();
         System.out.println(vybraneHP + " pokemoni:");
         for (int i = 0; i < pokemoni.length; i++) {
@@ -90,7 +90,7 @@ public class Pokedex extends Menu{
     }
 
     public void filtrujLevel() {
-        System.out.print("Jaky level chcete vypsat? (13)");
+        System.out.print("Jaky level chcete vypsat? (13): +");
         int vybranyLevel = input.nextInt();
         System.out.println(vybranyLevel + " pokemoni:");
         for (int i = 0; i < pokemoni.length; i++) {
@@ -98,5 +98,9 @@ public class Pokedex extends Menu{
                 System.out.println(pokemoni[i].getLevel());
             }
         }
+    }
+
+    public void porovnejPokemony(){
+        System.out.println("lol");
     }
 }
