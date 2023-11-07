@@ -13,12 +13,12 @@ public class Main{
         menu.vyvolejMenu();
 
         do {
-            System.out.println("Chcete jit zpatky do menu (1) nebo vypnout program? (2)");
+            System.out.println("\nChcete jit zpatky do menu (1) nebo vypnout program? (2)");
             if (input.nextInt() == 1){
                 menu.vyvolejMenu();
             } else {
                 vypnoutProgram = true;
             }
-        } while (vypnoutProgram == true);
+        } while (vypnoutProgram == false);
     }
 }

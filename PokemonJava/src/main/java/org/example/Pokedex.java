@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Pokedex{
@@ -100,7 +101,29 @@ public class Pokedex{
         }
     }
 
-    public void porovnejPokemony(){
-        System.out.println("lol");
+    public void porovnejPokemony(String jmenoPokemona1){
+        System.out.print("S jakym pokemonem ho budete porovnavat?: (Charizzard) ");
+        String jmenoPokemona2 = input.next();
+
+        var pokemon1stream =  Arrays.stream(pokemoni).filter(x -> x.getName().equals(jmenoPokemona1)).findFirst();
+        var pokemon2stream =  Arrays.stream(pokemoni).filter(x -> x.getName().equals(jmenoPokemona2)).findFirst();
+        if (pokemon1stream.isEmpty() || pokemon2stream.isEmpty()){
+            System.out.println("Neni co porovnat");
+            return;
+        }
+        var pokemon1 = pokemon1stream.get();
+        var pokemon2 = pokemon2stream.get();
+
+        System.out.println("\nSily pokemonu: " + "\n" + jmenoPokemona1 + " se silou " + vypocitejSilu(pokemon1) + "\n" + jmenoPokemona2 + "se silou " + vypocitejSilu(pokemon2));
+
+        if (vypocitejSilu(pokemon1) > vypocitejSilu(pokemon2)){
+            System.out.println("Vyhraje: " + jmenoPokemona1);
+        } else {
+            System.out.println("Vyhraje: " + jmenoPokemona2);
+        }
+    }
+
+    public double vypocitejSilu(Pokemon pokemon){
+        return Math.sqrt(pokemon.getHp()*pokemon.getLevel());
     }
 }

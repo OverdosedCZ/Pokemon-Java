@@ -21,7 +21,9 @@ public class Menu extends Pokedex{
                 vypisPokedex();
                 break;
             case 4:
-                porovnejPokemony();
+                System.out.print("Jakeho pokemona budete porovnavat? (Pikachu): ");
+                String pokemon1 = input.next();
+                porovnejPokemony(pokemon1);
                 break;
             default:
                 napisError();
