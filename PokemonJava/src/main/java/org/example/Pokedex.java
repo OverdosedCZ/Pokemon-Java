@@ -114,7 +114,7 @@ public class Pokedex{
         var pokemon1 = pokemon1stream.get();
         var pokemon2 = pokemon2stream.get();
 
-        System.out.println("\nSily pokemonu: " + "\n" + jmenoPokemona1 + " se silou " + vypocitejSilu(pokemon1) + "\n" + jmenoPokemona2 + "se silou " + vypocitejSilu(pokemon2));
+        System.out.println("\nSily pokemonu: " + "\n" + jmenoPokemona1 + " se silou " + vypocitejSilu(pokemon1) + "\n" + jmenoPokemona2 + " se silou " + vypocitejSilu(pokemon2));
 
         if (vypocitejSilu(pokemon1) > vypocitejSilu(pokemon2)){
             System.out.println("Vyhraje: " + jmenoPokemona1);

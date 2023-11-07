@@ -8,7 +8,7 @@ public class Menu extends Pokedex{
 
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Zvolte prosim operaci: \n-------------------------------");
+        System.out.println("\nZvolte prosim operaci: \n-------------------------------");
         System.out.println("Pridat pokemona (1) \nFiltrovany vyber (2) \nVypsat pokedex (3) \nPorovnani pokemonu (4) \n-------------------------------");
         switch (input.nextInt()){
             case 1:
