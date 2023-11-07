@@ -45,9 +45,4 @@ public class Pokemon {
     public void setLevel(int level) {
         this.level = level;
     }
-
-    @Override
-    public String toString() {
-        return "Pokemon{" + "name='" + name + '\'' + ", element='" + element + '\'' + ", hp=" + hp + ", level=" + level + '}';
-    }
 }
