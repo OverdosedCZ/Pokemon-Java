@@ -3,9 +3,11 @@ package org.example;
 import java.util.Scanner;
 
 public class Menu {
-    Scanner input = new Scanner(System.in);
-    Pokedex pokedex = new Pokedex();
+
     public void vyvolejMenu(){
+        Scanner input = new Scanner(System.in);
+        Pokedex pokedex = new Pokedex();
+
         System.out.println(" Zvolte prosim operaci: \n-------------------------------");
         System.out.println("Pridat pokemona (1) \nFiltrovany vyber (2) \nVypsat pokedex (3) \n-------------------------------");
         switch (input.nextInt()){
@@ -13,13 +15,17 @@ public class Menu {
                 pokedex.pridejPokemona();
                 break;
             case 2:
-                pokedex.vypisElementu();
+                pokedex.vypisFiltry();
                 break;
             case 3:
                 pokedex.vypisPokedex();
             default:
-                System.out.println("Nelze zpracovat (napiste jedno z cisel napsane vedle operaci (1, 2, 3)");
+                napisError();
                 break;
         }
+    }
+
+    public void napisError(){
+        System.out.println("\nNelze zpracovat! (napiste jedno z cisel napsane vedle operaci (1, 2, 3)");
     }
 }
