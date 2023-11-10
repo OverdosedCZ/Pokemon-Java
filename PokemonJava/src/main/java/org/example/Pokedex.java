@@ -1,13 +1,15 @@
 package org.example;
-
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
-public class Pokedex{
+public class Pokedex implements Serializable {
 
     Scanner input = new Scanner(System.in);
 
-    private Pokemon[] pokemoni;
+    protected Pokemon[] pokemoni;
 
     private int aktualniPoziceVListu = 0;
     private final int MAX_POKEMONI = 40;
@@ -34,7 +36,7 @@ public class Pokedex{
         System.out.print("Zadejte level pokemona: ");
         int level = input.nextInt();
 
-        System.out.println("Novy pokemon: '" + name + "' byl uspesne vytvoren! (Jmeno: " + name +" element: " + element + " HP: " + hp + " level: " + level + ")");
+        System.out.println("\nNovy pokemon: '" + name + "' byl uspesne vytvoren! (Jmeno: " + name +" element: " + element + " HP: " + hp + " level: " + level + ")");
 
         return new Pokemon(name, element, hp, level);
     }
@@ -126,4 +128,59 @@ public class Pokedex{
     public double vypocitejSilu(Pokemon pokemon){
         return Math.sqrt(pokemon.getHp()*pokemon.getLevel());
     }
+
+    public void ulozDoTohotoSouboru(String jmenoSouboru) {
+        try {
+            FileWriter fw = new FileWriter(jmenoSouboru + ".txt");
+            BufferedWriter bw = new BufferedWriter(fw);
+            System.out.println(this.pokemoni.length);
+            for (int i = 0; i < this.pokemoni.length; i++) {
+                if (this.pokemoni[i] == null){
+                    break;
+                }
+                bw.write(this.pokemoni[i].toString());
+                bw.newLine();
+            }
+            bw.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void nactiZeSouboru(String jmenoSouboru) {
+        try {
+            FileReader fr = new FileReader(jmenoSouboru + ".txt");
+            BufferedReader br = new BufferedReader(fr);
+
+            List<String> lines = new ArrayList<String>();
+            String line = "";
+
+            while ((line = br.readLine()) != null){
+                lines.add(line);
+            }
+
+            br.close();
+
+
+            for (int i = 0; i < lines.size(); i++) {
+                String linesSplitted[] = lines.get(i).split(",");
+                Pokemon temp = new Pokemon(linesSplitted[0].split("=")[1], linesSplitted[1].split("=")[1],
+                        Integer.parseInt(linesSplitted[2].split("=")[1]) , Integer.parseInt(linesSplitted[3].split("=")[1]));
+                this.pokemoni[i] = temp;
+                aktualniPoziceVListu++;
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Pokedex{" +
+                "pokemoni=" + Arrays.toString(pokemoni) +
+                '}';
+    }
 }
+
+

@@ -1,6 +1,8 @@
 package org.example;
 
-public class Pokemon {
+import java.io.Serializable;
+
+public class Pokemon implements Serializable {
     private String name;
     private String element;
     private int hp;
@@ -48,11 +50,9 @@ public class Pokemon {
 
     @Override
     public String toString() {
-        return "Pokemon{" +
-                "name='" + name + '\'' +
-                ", element='" + element + '\'' +
+        return "name=" + name +
+                ", element=" + element +
                 ", hp=" + hp +
-                ", level=" + level +
-                '}';
+                ", level=" + level;
     }
 }
